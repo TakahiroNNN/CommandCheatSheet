@@ -8,10 +8,13 @@ cd zabbix-docker
 git checkout 7.0
 ```
 
-コンテナ起動
+使用する composeファイルにシンボリックリンク張り直し（docker compose 時に読み込むファイルを設定）
 ```
-docker compose up -d --build
+# CentOS で MySQL の最新バージョンを使用する場合
+ln -sf docker-compose_v3_centos_mysql_latest.yaml compose.yaml
 ```
+
+**composeファイル内の、使用するコンテナ、ネットワーク以外の dockerリソースを削除する**
 
 nginxのコンテナが立ち上がり、apacheのコンテナが立ち上がらないのが謎
 
