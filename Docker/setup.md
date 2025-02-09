@@ -25,3 +25,19 @@ sudo service docker start
 ```
 sudo docker run hello-world
 ```
+
+#### Docker の簡易化・便利設定
+現在のユーザが sudo 無しで dockerコマンドが動くように
+```
+# 現ユーザを docker グループに追加
+sudo gpasswd -a $USER docker
+# docker グループの書き込み権限付与
+sudo chgrp docker /var/run/docker.sock
+```
+Docker daemon の自動起動（.bashrc に下記を記載）
+```
+# start docker service
+if test $(service docker status | awk '{print $4}') = 'not'; then 
+  sudo /usr/sbin/service docker start
+fi
+```
